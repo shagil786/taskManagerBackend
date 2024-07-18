@@ -33,7 +33,7 @@ export const signup = async (req, res) => {
             password: hasedPass,
             profilePic
         })
-        console.log(newUser);
+        // console.log(newUser);
 
         if(newUser){
             generateTokenAndSetCookie(newUser._id, res)
@@ -96,14 +96,71 @@ export const login = async (req, res) => {
 
 export const logout = (req, res) => {
     try {
-        res.cookie("jwt", "",{
-            maxAge: 0
-        })
-        res.status(200).json({
-            message: "User logged out."
+        res.clearCookie("jwt").status(200).json({
+            message : "Signed Out Successful"
         })
     } catch (error) {
         console.log("Error while logout:- ",error.message);
+        res.status(500).json({
+            error: "Internal Server Error"
+        })
+    }
+}
+
+export const google = async (req, res) => {
+    try {
+        const googleUser = await User.findOne({
+            email : req.body.email
+        })
+
+        if(googleUser){
+            generateTokenAndSetCookie(googleUser._id , res)
+            res.status(200).json({
+                _id: googleUser._id,
+                email: googleUser.email,
+                firstname: googleUser.firstname,
+                lastname: googleUser.lastname,
+                profilePic: googleUser.profilePic
+            })
+        } else {
+
+            const randomPass = Math.random().toString(36).slice(-8)
+            const hashedPass = bcrypt.hashSync(randomPass, 10)
+
+            const name = req.body.name
+            // Split the name by space
+            const nameParts = name.split(" ");
+            const firstname = nameParts[0];
+            const lastname = nameParts.slice(1).join(" ");
+
+            const profilePic = `https://avatar.iran.liara.run/username?username=${firstname}+${lastname}`
+
+            const newUser = new User({
+                firstname,
+                lastname,
+                email: req.body.email,
+                password: hashedPass,
+                profilePic
+            })
+
+            if(newUser){
+                generateTokenAndSetCookie(newUser._id, res)
+                await newUser.save()
+                res.status(201).json({
+                    _id:newUser._id,
+                    firstname: newUser.firstname,
+                    lastname: newUser.lastname,
+                    email: newUser.email,
+                    profilePic: newUser.profilePic
+                })
+            } else{
+                res.status(400).json({
+                    error: "User creation failed"
+                })
+            }
+        }
+    } catch (error) {
+        console.log("Error in google OAuth", error.message);
         res.status(500).json({
             error: "Internal Server Error"
         })

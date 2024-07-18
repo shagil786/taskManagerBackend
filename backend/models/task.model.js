@@ -7,7 +7,7 @@ const taskSchema = new mongoose.Schema({
     },
     description:{
         type:String,
-        required: true,
+        default: "",
     },
     userId: { // the one making the task
         type: mongoose.Schema.Types.ObjectId,
