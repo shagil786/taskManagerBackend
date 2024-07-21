@@ -11,7 +11,7 @@ export const addTask = async (req, res) => {
             })
         }
 
-        if(!title || !description){
+        if(!title ){
             return res.status(400).json({
                 error: "Data Missing.."
             })
@@ -25,7 +25,10 @@ export const addTask = async (req, res) => {
         })
 
         await newTask.save()
-        return res.status(201).json(newTask)
+        return res.status(201).json({
+            message : 'Task Added Successfully',
+            data:newTask
+        })
         
     } catch (error) {
         console.log("Error in add Task: ", error.message);
@@ -64,7 +67,8 @@ export const editTask = async (req, res) => {
         await task.save()
 
         res.status(200).json({
-            task
+            message: "Task updated successfully",
+            data: task
         })
     } catch (error) {
         console.log("Error in edit Task: ", error.message);

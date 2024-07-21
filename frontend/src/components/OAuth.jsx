@@ -1,7 +1,11 @@
 import { GoogleAuthProvider, signInWithPopup, getAuth } from 'firebase/auth'
 import { app } from '../googleOAuth/firebase'
+import { useAuthContext } from "../context/AuthContext";
 
 const OAuth = () => {
+
+    const { setAuthUser } = useAuthContext();
+
     const handleGoogleClick = async () => {
         try {
             const auth = getAuth(app)
@@ -19,6 +23,12 @@ const OAuth = () => {
                 }) 
             })
             const data = await res.json()
+            if (data.error) {
+				throw new Error(data.error);
+			}
+
+			localStorage.setItem("loggedin-user", JSON.stringify(data.data));
+			setAuthUser(data);
         } catch (error) {
             console.log("Could not login with google", error);
         }

@@ -116,11 +116,14 @@ export const google = async (req, res) => {
         if(googleUser){
             generateTokenAndSetCookie(googleUser._id , res)
             res.status(200).json({
-                _id: googleUser._id,
-                email: googleUser.email,
-                firstname: googleUser.firstname,
-                lastname: googleUser.lastname,
-                profilePic: googleUser.profilePic
+                message : "Logged in successfully",
+                data: {
+                    _id: googleUser._id,
+                    email: googleUser.email,
+                    firstname: googleUser.firstname,
+                    lastname: googleUser.lastname,
+                    profilePic: googleUser.profilePic
+                }
             })
         } else {
 
@@ -147,11 +150,14 @@ export const google = async (req, res) => {
                 generateTokenAndSetCookie(newUser._id, res)
                 await newUser.save()
                 res.status(201).json({
-                    _id:newUser._id,
-                    firstname: newUser.firstname,
-                    lastname: newUser.lastname,
-                    email: newUser.email,
-                    profilePic: newUser.profilePic
+                    message : "Logged in successfully",
+                    data: {
+                        _id: googleUser._id,
+                        email: googleUser.email,
+                        firstname: googleUser.firstname,
+                        lastname: googleUser.lastname,
+                        profilePic: googleUser.profilePic
+                    }
                 })
             } else{
                 res.status(400).json({
