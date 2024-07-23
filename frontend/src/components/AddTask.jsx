@@ -48,7 +48,7 @@ const AddTask = ({ isOpen, onClose, task }) => {
       }}
     >
       <div className="flex items-center justify-center min-h-screen">
-        <div className="bg-white rounded shadow-2xl p-4 w-full sm:w-3/4 md:w-2/3 lg:w-1/3 max-h-screen"
+        <div className="bg-white rounded-3xl shadow-2xl p-4 w-11/12 sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 max-w-md mx-auto flex flex-col"
         style={{
 
           boxShadow : '0px 0px 20px rgba(0,0,0,0.5)',

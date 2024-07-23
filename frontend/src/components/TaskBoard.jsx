@@ -137,7 +137,7 @@ const TaskBoard = () => {
         <div className='flex items-center mb-2'>
           <label className="mr-2">
             Sort by: </label>
-          <select className="w-full p-2 text-sm text-gray-700" value={sort} onChange={handleSort}> 
+          <select className="w-full p-2 text-sm text-gray-700 truncate" value={sort} onChange={handleSort}>
             <option value="">Select an option</option>
             <option value="createdAt_asc">Created Date (ASC)</option>
             <option value="createdAt_desc">Created Date (DESC)</option>
