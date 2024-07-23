@@ -13,7 +13,7 @@ const AddTask = ({ isOpen, onClose, task }) => {
     if (isOpen) {
       setTitle(task ? task.title : ''); // Reset title
       setDescription(task ? task.description : ''); // Reset description
-      setStatus(task ? task.status : 'todo'); // Reset status
+      setStatus(task ? task.taskProgress : 'todo'); // Reset status
     }
   }, [isOpen, task]);
 
@@ -88,7 +88,7 @@ const AddTask = ({ isOpen, onClose, task }) => {
               </select>
             </label>
           </form>
-          <div className='flex justify-end p-4'>
+          <div className='flex justify-end space-x-2 mt-4'>
           <button
               className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2"
               onClick={onClose}

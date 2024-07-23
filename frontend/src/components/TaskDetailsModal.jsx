@@ -10,17 +10,17 @@ const TaskDetailsModal = ({ isOpen, onClose, task }) => {
     >
       <div className="flex items-center justify-center min-h-screen h-screen">
         <div
-          className="bg-white rounded shadow-2xl p-4 w-1/2 h-4/5"
+          className="bg-white rounded shadow-2xl p-4 w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 h-auto max-h-4/5 flex flex-col"
           style={{ maxHeight: '90vh', boxShadow: '0px 0px 20px rgba(0,0,0,0.5)' }}
         >
           <h2 className="text-2xl font-bold mb-4">Task Details</h2>
-          <div>
+          <div className="flex-grow overflow-auto">
             <p className="mb-2"><strong>Title:</strong> {task.title}</p>
             <p className="mb-2"><strong>Description:</strong> {task.description}</p>
             <p className="mb-2"><strong>Status:</strong> {task.taskProgress.toUpperCase()}</p>
             <p className="mb-2"><strong>Created At:</strong> {new Date(task.createdAt).toLocaleString()}</p>
           </div>
-          <div className="flex justify-end p-4">
+          <div className="flex justify-end space-x-2 mt-4">
             <button
               className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
               onClick={onClose}

@@ -148,13 +148,13 @@ const TaskBoard = () => {
       </div>
 
       {/* Task Board Structure */}
-      <div className="flex flex-wrap justify-center h-screen">
+      <div className="flex flex-wrap justify-center min-h-screen">
         {loading && <p>Loading...</p>}
         {!loading && (
           <>
             {['todo', 'inprogress', 'done'].map((listId) => (
-              <div key={listId} className="w-1/3 p-4">
-                <div className="bg-white shadow-lg p-4 rounded h-full overflow-y-auto">
+              <div key={listId} className="w-full md:w-1/2 lg:w-1/3 p-4">
+                <div className="bg-white shadow-lg p-4 rounded flex flex-col h-full">
                   <h2 className="text-lg font-bold text-center bg-blue-500 p-2 rounded">
                     {listId.toUpperCase()}
                   </h2>

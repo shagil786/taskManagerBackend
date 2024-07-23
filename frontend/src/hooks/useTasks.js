@@ -58,7 +58,7 @@ const useTasks = () => {
         }),
       });
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
 
       if(data.message){
         toast.success(data.message)
