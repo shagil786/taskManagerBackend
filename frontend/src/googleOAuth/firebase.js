@@ -6,12 +6,14 @@ import { initializeApp } from "firebase/app";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: "taskmanagerassignment.firebaseapp.com",
-  projectId: "taskmanagerassignment",
-  storageBucket: "taskmanagerassignment.appspot.com",
-  messagingSenderId: "328173884065",
-  appId: "1:328173884065:web:6eeb453331f8a103b856e0"
+  authDomain: "taskmanager-656fd.firebaseapp.com",
+  projectId: "taskmanager-656fd",
+  storageBucket: "taskmanager-656fd.appspot.com",
+  messagingSenderId: "154181427338",
+  appId: "1:154181427338:web:464a0b5720404b5d4c0d73",
+  measurementId: "G-B6S6L8LZSK",
 };
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);

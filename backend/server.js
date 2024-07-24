@@ -4,15 +4,14 @@ import cookieParser from "cookie-parser";
 import path from "path";
 import authRoutes from "./routes/auth.routes.js";
 import taskRoutes from "./routes/task.routes.js";
-import connection from "./db/connection.js";
 import cors from "cors";
+import connection from "./db/connection.js";
 
 dotenv.config();
 
 const app = express();
 
-const PORT = process.env.PORT;
-console.log(PORT);
+const PORT = process.env.PORT || 3000;
 
 const __dirname = path.resolve();
 
@@ -35,7 +34,6 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on ${PORT}`);
-  connection();
-});
+connection();
+
+module.exports = app;
